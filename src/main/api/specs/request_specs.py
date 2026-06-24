@@ -17,7 +17,7 @@ class RequestSpecs:
     def auth_headers(username: str, password: str):
         login_request = LoginUserRequest(username=username, password=password)
         login_admin_response = requests.post(
-            url=f"{Config.fetch("backendUrl")}/api/auth/token/login",
+            url=f"{Config.fetch("backendUrl")}/auth/token/login",
             json=login_request.model_dump(),
             headers=RequestSpecs.base_headers()
         )
@@ -28,14 +28,12 @@ class RequestSpecs:
             headers["Authorization"] = f"Bearer {token}"
 
             return {
-                "headers": headers,
-                "base_url": Config.fetch("backendUrl")
+                headers
             }
         raise Exception("!!! Authentication failed !!!")
 
     @staticmethod
     def unauth_headers():
         return {
-            "headers": RequestSpecs.base_headers(),
-            "base_url": Config.fetch("backendUrl")
+            RequestSpecs.base_headers()
         }
