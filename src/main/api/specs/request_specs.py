@@ -27,13 +27,11 @@ class RequestSpecs:
             headers = RequestSpecs.base_headers()
             headers["Authorization"] = f"Bearer {token}"
 
-            return {
-                headers
-            }
+            return headers
+
         raise Exception("!!! Authentication failed !!!")
 
     @staticmethod
     def unauth_headers():
-        return {
-            RequestSpecs.base_headers()
-        }
+        return RequestSpecs.base_headers()
+        
