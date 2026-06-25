@@ -1,5 +1,5 @@
 from typing import Optional
-from urllib import response
+
 
 import requests
 from requests import Response

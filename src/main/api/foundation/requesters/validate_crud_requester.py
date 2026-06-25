@@ -14,12 +14,12 @@ class ValidateCrudRequester(HttpRequester):
             response_spec=response_spec
         )
 
-        def post(self, model: BaseModel) -> BaseModel:
-            response = self.crud_requester.post(model)
-            self.response_spec(response)
-            return self.endpoint.value.respose_model.model_validate(response.json())
+    def post(self, model: BaseModel) -> BaseModel:
+        response = self.crud_requester.post(model)
+        self.response_spec(response)
+        return self.endpoint.value.response_model.model_validate(response.json())
 
-        def delete(self, user_id: int):
-            response = self.crud_requester.delete(user_id)
-            self.response_spec(response)
-            return self.endpoint.value.respose_model.model_validate(response.json())
+    def delete(self, user_id: int):
+        response = self.crud_requester.delete(user_id)
+        self.response_spec(response)
+        return self.endpoint.value.respose_model.model_validate(response.json())
